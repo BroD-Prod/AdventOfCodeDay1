@@ -5,7 +5,7 @@
 #include <sstream>
 
 int main(){
-    std::fstream inputFile("adventofcodeday1input.txt");
+    std::fstream inputFile("adventofcodeday1example.txt");
     std::string line;
     int startingNum = 50;
     int roationsToZero = 0;
@@ -16,14 +16,15 @@ int main(){
                 char direction = line[i];
                 std::string numberStr = line.substr(i + 1);
                 int value = std::stoi(numberStr);
-                std::cout << "Direction: " << direction << ", Value: " << value << std::endl;
                 if(direction == 'R'){
                     startingNum += value;
+                    std::cout << "postion" << startingNum << std::endl;
                     if(startingNum > 100){
                         startingNum %= 100;
                     }
                 } else if(direction == 'L'){
                     startingNum -= value;
+                    std::cout << "postion" << startingNum << std::endl;
                     if(startingNum < 0){
                         startingNum %= 100;
                 }
