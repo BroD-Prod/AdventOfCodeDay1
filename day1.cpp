@@ -5,10 +5,10 @@
 #include <sstream>
 
 int main(){
-    std::fstream inputFile("adventofcodeday1example.txt");
+    std::fstream inputFile("adventofcodeday1input.txt");
     std::string line;
     int startingNum = 50;
-    int roationsToZero = 0;
+    int rotationsToZero = 0;
     
     while(std::getline(inputFile, line)){
         for(int i = 0; i < line.length(); i++){
@@ -16,25 +16,23 @@ int main(){
                 char direction = line[i];
                 std::string numberStr = line.substr(i + 1);
                 int value = std::stoi(numberStr);
+                std::cout << "Direction: " << direction << ", Value: " << value << std::endl;
                 if(direction == 'R'){
-                    startingNum += value;
-                    std::cout << "postion" << startingNum << std::endl;
-                    if(startingNum > 100){
-                        startingNum %= 100;
-                    }
+                    startingNum = (startingNum + value) % 100;
                 } else if(direction == 'L'){
-                    startingNum -= value;
-                    std::cout << "postion" << startingNum << std::endl;
-                    if(startingNum < 0){
-                        startingNum %= 100;
+                    startingNum = (startingNum - value) % 100;
+                        if(startingNum < 0){
+                            startingNum += 100;
+                    }
                 }
-            if(startingNum == 0){
-                roationsToZero++;
+                std::cout << "Current position: " << startingNum << std::endl;
+                    if(startingNum == 0){
+                        rotationsToZero++;
+                }
+                break; // Move to the next line after processing one command
             }
         }
     }
-    }
-    }
-    std::cout << "Total rotations to zero: " << roationsToZero << std::endl;
+    std::cout << "Total rotations to zero: " << rotationsToZero << std::endl;
     return 0;
 }
